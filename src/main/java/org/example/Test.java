@@ -2,10 +2,7 @@ package org.example;
 
 import org.example.BinNumbers.BinNum;
 import org.example.BinNumbers.FixedPointBinNum;
-import org.example.BinNumbers.Multiplier.MultipliedNum;
-import org.example.BinNumbers.Multiplier.Multiplier;
-import org.example.BinNumbers.Multiplier.MultiplyMethod1;
-import org.example.BinNumbers.Multiplier.MultiplyMethod2;
+import org.example.BinNumbers.Multiplier.*;
 import org.example.BinNumbers.NumType.DkFixedPointBinNumType;
 import org.example.BinNumbers.NumType.OkFixedPointBinNumType;
 import org.example.BinNumbers.NumType.PkFixedPointBinNumType;
@@ -68,10 +65,10 @@ public class Test {
         BinNum testSum2 = testNum.sum(fixedNum2);
         System.out.println(testSum2);
 
-        BinNum testMult1 = new SimpleBinNum("100110");
+        BinNum testMult1 = new SimpleBinNum("100010");
         BinNum testMult2 = new SimpleBinNum("111100");
 
-        MultipliedNum testMultResult = testMult1.multiply(testMult2, new MultiplyMethod2());
+        MultipliedNum testMultResult = testMult1.multiply(testMult2, new MultiplyMethod1());
         System.out.println(testMultResult.getNumber().toString());
     }
 }

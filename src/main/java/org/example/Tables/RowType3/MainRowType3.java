@@ -6,7 +6,7 @@ import org.example.Tables.Row;
 import java.util.ArrayList;
 
 public class MainRowType3 extends Row {
-    public MainRowType3(int id, ArrayList<SimpleBinNum> rg1Number, ArrayList<SimpleBinNum> rg2Number, SimpleBinNum rg3Number, String counter, String operations) {
+    public MainRowType3(int id, ArrayList<SimpleBinNum> rg2Number, ArrayList<SimpleBinNum> rg1Number, SimpleBinNum rg3Number, String counter, String operations) {
         super(id, counter, operations);
         this.rg1Number = rg1Number;
         this.rg2Number = rg2Number;
@@ -15,7 +15,7 @@ public class MainRowType3 extends Row {
         this.rg3Number = rg3List;
     }
 
-    public MainRowType3(int id, SimpleBinNum rg1Number, SimpleBinNum rg2Number, SimpleBinNum rg3Number, String counter, String operations) {
+    public MainRowType3(int id, SimpleBinNum rg2Number, SimpleBinNum rg1Number, SimpleBinNum rg3Number, String counter, String operations) {
         super(id, counter, operations);
         ArrayList<SimpleBinNum> rg1List = new ArrayList<>();
         rg1List.add(rg1Number);
@@ -33,7 +33,7 @@ public class MainRowType3 extends Row {
         if (rg1Number.size() == 2) {
             return rg1Number.get(0).toString() + "\n<<" + rg1Number.get(1).toString();
         }
-        return rg1Number.get(0).toString() + "\n+" + rg1Number.get(1).toString() + "\n=" + rg1Number.get(2).toString() + "\n<<" + rg1Number.get(3).toString();
+        return rg1Number.get(0).toString() + "\n+" + rg1Number.get(1).toString() + "\n=" + rg1Number.get(2).getNumber().getFirst() + "|" + rg1Number.get(2).toString() + "\n<<" + rg1Number.get(3).toString();
     }
 
     @Override
@@ -41,7 +41,7 @@ public class MainRowType3 extends Row {
         if (rg2Number.size() == 2) {
             return rg2Number.get(0).toString() + "\n<<" + rg2Number.get(1).toString();
         }
-        return rg1Number.get(0).toString() + "\n+" + rg2Number.get(1).toString() + "\n=" + rg2Number.get(2).getNumber().getFirst() + "|" + rg2Number.getFirst().toString() + "\n<<" + rg2Number.get(3).toString();
+        return rg1Number.get(0).toString() + "\n+" + rg2Number.get(1).toString() + "\n=" + rg2Number.getFirst().toString() + "\n<<" + rg2Number.get(3).toString();
 
     }
 

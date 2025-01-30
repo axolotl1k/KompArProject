@@ -3,8 +3,8 @@ package org.example.Tables.RowType3;
 import org.example.BinNumbers.SimpleBinNum;
 
 public class ZeroRowType3 extends MainRowType3{
-    public ZeroRowType3(int id, SimpleBinNum rg1Number, SimpleBinNum rg2Number, SimpleBinNum rg3Number, String counter, String operations) {
-        super(id, rg1Number, rg2Number, rg3Number, counter, operations);
+    public ZeroRowType3(int id, SimpleBinNum rg2Number, SimpleBinNum rg1Number, SimpleBinNum rg3Number, String counter, String operations) {
+        super(id, rg2Number, rg1Number, rg3Number, counter, operations);
     }
 
     @Override

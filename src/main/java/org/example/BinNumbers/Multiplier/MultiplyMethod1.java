@@ -69,7 +69,8 @@ public class MultiplyMethod1 implements MultiplyStrategy {
             }
             multiplyTable.addRow(row);
         }
-        SimpleBinNum resultNum = new SimpleBinNum(new StringBuilder(multiplyTable.getRow(counter-1).getRg1Number().getLast().toString()).deleteCharAt(0) + rg2Num.toString());
+        String returnString = multiplyTable.getRow(counter-1).getRg1Number().getLast().toString() + rg2Num.toString();
+        SimpleBinNum resultNum = new SimpleBinNum(returnString.substring(1));
         return new MultipliedNum(resultNum, multiplyTable);
     }
 }
