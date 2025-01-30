@@ -8,7 +8,7 @@ import org.example.Tables.Table;
 
 import java.util.ArrayList;
 
-public class MultiplyMethod2 implements MultiplyStrategy{
+public class MultiplyMethod2 implements MultiplyStrategy {
     @Override
     public MultipliedNum multiply(SimpleBinNum a, SimpleBinNum b) {
         ArrayList<Integer> firstOperand = new ArrayList<>(a.getNumber());
@@ -33,7 +33,7 @@ public class MultiplyMethod2 implements MultiplyStrategy{
         for (int i = 0; i < maxLength; i++) {
             rg1.append("0");
         }
-        SimpleBinNum rg1Num = new SimpleBinNum(rg1.toString()+ rg1);
+        SimpleBinNum rg1Num = new SimpleBinNum(rg1.toString() + rg1);
         SimpleBinNum rg2Num = new SimpleBinNum(firstOperand, 0, 0);
         SimpleBinNum rg3Num = new SimpleBinNum(rg1 + new SimpleBinNum(secondOperand, 0, 0).toString());
         int counter = 0;
@@ -69,7 +69,7 @@ public class MultiplyMethod2 implements MultiplyStrategy{
             flag = rg1.toString().equals(rg2Num.toString());
             counter++;
         }
-        SimpleBinNum resultNum = new SimpleBinNum(multiplyTable.getRow(counter-1).getRg1Number().getLast().toString());
+        SimpleBinNum resultNum = new SimpleBinNum(multiplyTable.getRow(counter - 1).getRg1Number().getLast().toString());
         return new MultipliedNum(resultNum, multiplyTable);
     }
 }

@@ -70,6 +70,7 @@ public class Test {
 
         BinNum testMult1 = new SimpleBinNum("100110");
         BinNum testMult2 = new SimpleBinNum("111100");
+
         MultipliedNum testMultResult = testMult1.multiply(testMult2, new MultiplyMethod2());
         System.out.println(testMultResult.getNumber().toString());
     }
