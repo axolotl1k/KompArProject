@@ -13,7 +13,7 @@ public class MultiplyMethod4 implements MultiplyStrategy {
     private StringBuilder gNumber; //працює за принципом додавання дробового числа до результату дробового множення
 
     public MultiplyMethod4() {
-        gNumber = new StringBuilder("");
+        gNumber = new StringBuilder();
     }
 
     public MultiplyMethod4(String gNumber) {
@@ -26,10 +26,10 @@ public class MultiplyMethod4 implements MultiplyStrategy {
         ArrayList<Integer> secondOperand = new ArrayList<>(b.getNumber());
         int maxLength = Math.max(firstOperand.size(), secondOperand.size());
         while (firstOperand.size() < maxLength) {
-            firstOperand.addFirst(0);
+            firstOperand.addLast(0);
         }
         while (secondOperand.size() < maxLength) {
-            secondOperand.addFirst(0);
+            secondOperand.addLast(0);
         }
         ArrayList<String> header = new ArrayList<>();
         header.add("№");
