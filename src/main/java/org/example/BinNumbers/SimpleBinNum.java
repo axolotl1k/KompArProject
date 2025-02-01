@@ -1,5 +1,8 @@
 package org.example.BinNumbers;
 
+import org.example.BinNumbers.Divider.DivideStrategy;
+import org.example.BinNumbers.Divider.DividedNum;
+import org.example.BinNumbers.Divider.Divider;
 import org.example.BinNumbers.Multiplier.MultipliedNum;
 import org.example.BinNumbers.Multiplier.Multiplier;
 import org.example.BinNumbers.Multiplier.MultiplyStrategy;
@@ -78,6 +81,13 @@ public class SimpleBinNum implements BinNum {
         Multiplier multiplier = new Multiplier(strategy);
         //реалізувати логіку для інших форматів чисел
         return multiplier.multiply(this, (SimpleBinNum) multipliedNum);
+    }
+
+    @Override
+    public DividedNum divide(BinNum dividerNum, DivideStrategy strategy) {
+        Divider divider = new Divider(strategy);
+        //реалізувати логіку для інших форматів чисел
+        return divider.divide(this, (SimpleBinNum) dividerNum);
     }
 
     @Override

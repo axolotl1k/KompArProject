@@ -1,4 +1,4 @@
-package org.example.BinNumbers.NumType;
+package org.example.BinNumbers.FixedPointNumType;
 
 import org.example.BinNumbers.BinNum;
 import org.example.BinNumbers.FixedPointBinNum;

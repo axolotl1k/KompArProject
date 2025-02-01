@@ -1,8 +1,10 @@
 package org.example.BinNumbers;
 
+import org.example.BinNumbers.Divider.DivideStrategy;
+import org.example.BinNumbers.Divider.DividedNum;
 import org.example.BinNumbers.Multiplier.MultipliedNum;
 import org.example.BinNumbers.Multiplier.MultiplyStrategy;
-import org.example.BinNumbers.NumType.FixedPointBinNumType;
+import org.example.BinNumbers.FixedPointNumType.FixedPointBinNumType;
 
 public class FixedPointBinNum implements BinNum {
     private SimpleBinNum signBits;
@@ -62,6 +64,12 @@ public class FixedPointBinNum implements BinNum {
 
     @Override
     public MultipliedNum multiply(BinNum multipliedNum, MultiplyStrategy strategy) {
+        System.out.println("No supported for now. Returned null");
+        return null;
+    }
+
+    @Override
+    public DividedNum divide(BinNum dividedNum, DivideStrategy strategy) {
         System.out.println("No supported for now. Returned null");
         return null;
     }

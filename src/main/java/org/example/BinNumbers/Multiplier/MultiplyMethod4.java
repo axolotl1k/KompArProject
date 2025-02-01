@@ -41,9 +41,7 @@ public class MultiplyMethod4 implements MultiplyStrategy {
         Table multiplyTable = new Table(header);
 
         StringBuilder rg1 = new StringBuilder();
-        for (int i = 0; i < maxLength; i++) {
-            rg1.append("0");
-        }
+        rg1.append("0".repeat(maxLength));
         for (int i = gNumber.length(); i < maxLength; i++) {
             gNumber.append("0");
         }

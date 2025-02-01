@@ -16,5 +16,4 @@ public class Multiplier {
     public MultipliedNum multiply(SimpleBinNum num1, SimpleBinNum num2) {
         return multiplyStrategy.multiply(num1, num2);
     }
-
 }

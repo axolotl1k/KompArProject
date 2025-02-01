@@ -1,5 +1,7 @@
 package org.example.BinNumbers;
 
+import org.example.BinNumbers.Divider.DivideStrategy;
+import org.example.BinNumbers.Divider.DividedNum;
 import org.example.BinNumbers.Multiplier.MultipliedNum;
 import org.example.BinNumbers.Multiplier.MultiplyStrategy;
 
@@ -21,4 +23,6 @@ public interface BinNum {
     BinNumType getBinNumType();
 
     MultipliedNum multiply(BinNum multipliedNum, MultiplyStrategy strategy);
+
+    DividedNum divide(BinNum dividedNum, DivideStrategy strategy);
 }

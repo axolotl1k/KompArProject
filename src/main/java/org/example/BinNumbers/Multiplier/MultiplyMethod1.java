@@ -29,11 +29,7 @@ public class MultiplyMethod1 implements MultiplyStrategy {
         header.add("Мікрооперації");
         Table multiplyTable = new Table(header);
 
-        StringBuilder rg1 = new StringBuilder();
-        for (int i = 0; i < maxLength + 1; i++) {
-            rg1.append("0");
-        }
-        SimpleBinNum rg1Num = new SimpleBinNum(rg1.toString());
+        SimpleBinNum rg1Num = new SimpleBinNum("0".repeat(maxLength + 1));
         SimpleBinNum rg2Num = new SimpleBinNum(firstOperand, 0, 0);
         SimpleBinNum rg3Num = new SimpleBinNum(secondOperand, 0, 0);
         int counter = 0;

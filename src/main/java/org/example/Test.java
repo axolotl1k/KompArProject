@@ -1,11 +1,14 @@
 package org.example;
 
 import org.example.BinNumbers.BinNum;
+import org.example.BinNumbers.Divider.DivideMethod1;
+import org.example.BinNumbers.Divider.DivideMethod2;
+import org.example.BinNumbers.Divider.DividedNum;
 import org.example.BinNumbers.FixedPointBinNum;
 import org.example.BinNumbers.Multiplier.*;
-import org.example.BinNumbers.NumType.DkFixedPointBinNumType;
-import org.example.BinNumbers.NumType.OkFixedPointBinNumType;
-import org.example.BinNumbers.NumType.PkFixedPointBinNumType;
+import org.example.BinNumbers.FixedPointNumType.DkFixedPointBinNumType;
+import org.example.BinNumbers.FixedPointNumType.OkFixedPointBinNumType;
+import org.example.BinNumbers.FixedPointNumType.PkFixedPointBinNumType;
 import org.example.BinNumbers.SimpleBinNum;
 
 public class Test {
@@ -70,5 +73,11 @@ public class Test {
 
         MultipliedNum testMultResult = testMult1.multiply(testMult2, new MultiplyMethod1());
         System.out.println(testMultResult.getNumber().toString());
+
+        BinNum testDiv1 = new SimpleBinNum("100010");
+        BinNum testDiv2 = new SimpleBinNum("111100");
+
+        DividedNum testDivResult = testDiv1.divide(testDiv2, new DivideMethod2());
+        System.out.println(testDivResult.getNumber().toString());
     }
 }

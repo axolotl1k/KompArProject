@@ -1,9 +1,10 @@
-package org.example.BinNumbers.NumType;
+package org.example.BinNumbers.FixedPointNumType;
 
+import org.example.BinNumbers.BinNum;
 import org.example.BinNumbers.FixedPointBinNum;
 import org.example.BinNumbers.SimpleBinNum;
 
-public class OkFixedPointBinNumType implements FixedPointBinNumType {
+public class DkFixedPointBinNumType implements FixedPointBinNumType {
     @Override
     public FixedPointBinNum sum(FixedPointBinNum a, FixedPointBinNum b, int carry) {
         SimpleBinNum signBitsA = a.getSignBits();
@@ -33,13 +34,10 @@ public class OkFixedPointBinNumType implements FixedPointBinNumType {
         while (signBitsB.getNumber().size() < maxLength) {
             signBitsB.getNumber().addFirst(signBitsB.getNumber().getFirst());
         }
-        fractionBitsA = (SimpleBinNum) fractionBitsA.sum(fractionBitsB, carry);
-        integerBitsA = (SimpleBinNum) integerBitsA.sum(integerBitsB, fractionBitsA.getCarryBit());
+        fractionBitsA= (SimpleBinNum) fractionBitsA.sum(fractionBitsB, carry);
+        integerBitsA= (SimpleBinNum) integerBitsA.sum(integerBitsB, fractionBitsA.getCarryBit());
         signBitsA = (SimpleBinNum) signBitsA.sum(signBitsB, integerBitsA.getCarryBit());
-        if (signBitsA.getCarryBit() == 0) {
-            return new FixedPointBinNum(signBitsA, integerBitsA, fractionBitsA, a.getFixedPointType());
-        }
-        return sum(new FixedPointBinNum(signBitsA, integerBitsA, fractionBitsA, a.getFixedPointType()), new FixedPointBinNum("0.0,0", a.getFixedPointType()), 1);
+        return new FixedPointBinNum(signBitsA, integerBitsA, fractionBitsA, a.getFixedPointType());
     }
 
     @Override
@@ -47,7 +45,7 @@ public class OkFixedPointBinNumType implements FixedPointBinNumType {
         SimpleBinNum signBits = num.getSignBits();
         SimpleBinNum integerBits = num.getIntegerBits();
         SimpleBinNum fractionBits = num.getFractionBits();
-        fractionBits = (SimpleBinNum) fractionBits.shiftLeft(signBits.getNumber().getFirst());
+        fractionBits = (SimpleBinNum) fractionBits.shiftLeft(0);
         integerBits = (SimpleBinNum) integerBits.shiftLeft(fractionBits.getDroppedBit());
         signBits = (SimpleBinNum) signBits.shiftLeft(integerBits.getDroppedBit());
         return new FixedPointBinNum(signBits, integerBits, fractionBits, num.getFixedPointType());
@@ -65,24 +63,27 @@ public class OkFixedPointBinNumType implements FixedPointBinNumType {
     }
 
     @Override
-    public FixedPointBinNum invertToPk(FixedPointBinNum num) {
-        SimpleBinNum signBits = num.getSignBits();
-        if (signBits.getNumber().getFirst() == 0) return num;
-        SimpleBinNum integerBits = (SimpleBinNum) num.getIntegerBits().invert();
-        SimpleBinNum fractionBits = (SimpleBinNum) num.getFractionBits().invert();
-        return new FixedPointBinNum(signBits, integerBits, fractionBits, new PkFixedPointBinNumType());
-    }
-
-    @Override
-    public FixedPointBinNum invertToOk(FixedPointBinNum num) {
+    public FixedPointBinNum invertToDk(FixedPointBinNum num) {
         System.out.println("Can`t invert to same type number. Returned same number");
         return num;
     }
 
     @Override
-    public FixedPointBinNum invertToDk(FixedPointBinNum num) {
+    public FixedPointBinNum invertToOk(FixedPointBinNum num) {
         System.out.println("Can`t invert to that type number. Returned same number");
         return num;
+    }
+
+    @Override
+    public FixedPointBinNum invertToPk(FixedPointBinNum num) {
+        BinNum signBits = num.getSignBits();
+        if (((SimpleBinNum) signBits).getNumber().getFirst() == 0) return num;
+        BinNum integerBits = num.getIntegerBits().invert();
+        BinNum fractionBits = num.getFractionBits().invert();
+        fractionBits = fractionBits.sum(new SimpleBinNum("0"), 1);
+        integerBits = integerBits.sum(new SimpleBinNum("0"), ((SimpleBinNum) fractionBits).getCarryBit());
+        signBits = signBits.sum(new SimpleBinNum("0"), ((SimpleBinNum) integerBits).getCarryBit());
+        return new FixedPointBinNum((SimpleBinNum) signBits, (SimpleBinNum) integerBits, (SimpleBinNum) fractionBits, new PkFixedPointBinNumType());
     }
 
     @Override
