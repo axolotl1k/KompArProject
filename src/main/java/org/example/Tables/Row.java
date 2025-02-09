@@ -1,5 +1,6 @@
 package org.example.Tables;
 
+import org.apache.poi.xwpf.usermodel.*;
 import org.example.BinNumbers.SimpleBinNum;
 
 import java.util.ArrayList;
@@ -40,6 +41,47 @@ public abstract class Row {
 
     public String getOperations() {
         return operations;
+    }
+
+    public XWPFTableRow getTableRow(XWPFTable table) {
+        XWPFTableRow row = table.createRow();
+        addCellWithNewLines(row, 0, String.valueOf(id));
+        addCellWithNewLines(row, 1, getRg1AsString());
+        addCellWithNewLines(row, 2, getRg2AsString());
+        addCellWithNewLines(row, 3, getRg3AsString());
+        //треба переписати метод для рядків де змінений порядок регістрів
+        if (!getCounter().isEmpty()) {
+            addCellWithNewLines(row, 4, getCounter());
+            addCellWithNewLines(row, 5, getOperations());
+        } else addCellWithNewLines(row, 4, getOperations());
+        return row;
+    }
+
+    public static void addCellWithNewLines(XWPFTableRow row, int cellIndex, String text) {
+        XWPFTableCell cell;
+
+        // Якщо комірка ще не створена - створюємо її
+        if (row.getCell(cellIndex) == null) {
+            cell = row.createCell();
+        } else {
+            cell = row.getCell(cellIndex);
+        }
+
+        // Очищаємо комірку перед записом (щоб уникнути дублювання)
+        cell.removeParagraph(0);
+
+        // Додаємо новий абзац для комірки
+        XWPFParagraph paragraph = cell.addParagraph();
+        XWPFRun run = paragraph.createRun();
+
+        // Розбиваємо текст за \n і додаємо кожен рядок окремо
+        String[] lines = text.split("\n");
+        for (int i = 0; i < lines.length; i++) {
+            run.setText(lines[i]);
+            if (i < lines.length - 1) {
+                run.addBreak(); // Додає новий рядок у Word
+            }
+        }
     }
 
     abstract public String getRg1AsString();

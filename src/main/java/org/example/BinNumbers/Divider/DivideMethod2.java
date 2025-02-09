@@ -2,7 +2,6 @@ package org.example.BinNumbers.Divider;
 
 import org.example.BinNumbers.SimpleBinNum;
 import org.example.Tables.Row;
-import org.example.Tables.RowType5.MainRowType5;
 import org.example.Tables.RowType6.MainRowType6;
 import org.example.Tables.RowType6.ZeroRowType6;
 import org.example.Tables.Table;
@@ -47,7 +46,7 @@ public class DivideMethod2 implements DivideStrategy {
         ArrayList<SimpleBinNum> rg1List = new ArrayList<>(List.of(rg1NumPlus, rg1NumMinus));
         Row zeroRowType6 = new ZeroRowType6(counter, rg3Num, rg2Num, rg1List, zeroRowOper);
         divideTable.addRow(zeroRowType6);
-        String operationPlus = "RG2 = RG2+\\bar{RG1}+D\n" +
+        String operationPlus = "RG2 = RG2+\\!RG1+D\n" +
                 "RG3 = l(RG3).SM(p)\n" +
                 "RG1 = 0.r(RG1)";
         String operationMinus = "RG2 = RG2+RG1\n" +
@@ -73,7 +72,7 @@ public class DivideMethod2 implements DivideStrategy {
             rg1NumPlus = (SimpleBinNum) rg1NumPlus.shiftRight();
             rg1List = new ArrayList<>(List.of(rg1NumPlus, rg1NumMinus));
             counter++;
-            Row row = new MainRowType5(counter, rg3Num, rg2List, rg1List, operation);
+            Row row = new MainRowType6(counter, rg3Num, rg2List, rg1List, operation);
             divideTable.addRow(row);
         }
         String returnString = divideTable.getRow(counter).getRg3Number().getLast().toString();

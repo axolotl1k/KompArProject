@@ -1,5 +1,7 @@
 package org.example.Tables.RowType5;
 
+import org.apache.poi.xwpf.usermodel.XWPFTable;
+import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 import org.example.BinNumbers.SimpleBinNum;
 import org.example.Tables.Row;
 
@@ -31,7 +33,7 @@ public class MainRowType5 extends Row {
         if (rg2Number.size() == 1) {
             return rg2Number.getFirst().toString();
         }
-        return rg2Number.get(0).toString() + "\n+" + rg2Number.get(1).toString() + "\n=" + rg2Number.get(2).getCarryBit() + rg2Number.get(2).toString() + "\n<<" + rg2Number.get(3).toString();
+        return rg2Number.get(0).toString() + "\n+" + rg2Number.get(1).toString() + "\n=" + rg2Number.get(2).getCarryBit() + "|" + rg2Number.get(2).toString() + "\n<<" + rg2Number.get(3).toString();
     }
 
     @Override
@@ -41,6 +43,17 @@ public class MainRowType5 extends Row {
 
     @Override
     public String getRg3AsString() {
-        return ">>" + rg3Number.getFirst().toString();
+        return "<<" + rg3Number.getFirst().toString();
+    }
+
+    @Override
+    public XWPFTableRow getTableRow(XWPFTable table) {
+        XWPFTableRow row = table.createRow();
+        addCellWithNewLines(row, 0, String.valueOf(id));
+        addCellWithNewLines(row, 1, getRg3AsString());
+        addCellWithNewLines(row, 2, getRg2AsString());
+        addCellWithNewLines(row, 3, getRg1AsString());
+        addCellWithNewLines(row, 4, getOperations());
+        return row;
     }
 }

@@ -1,5 +1,7 @@
 package org.example;
 
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.example.BinNumbers.BinNum;
 import org.example.BinNumbers.Divider.DivideMethod1;
 import org.example.BinNumbers.Divider.DivideMethod2;
@@ -10,6 +12,9 @@ import org.example.BinNumbers.FixedPointNumType.DkFixedPointBinNumType;
 import org.example.BinNumbers.FixedPointNumType.OkFixedPointBinNumType;
 import org.example.BinNumbers.FixedPointNumType.PkFixedPointBinNumType;
 import org.example.BinNumbers.SimpleBinNum;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class Test {
     public static void main(String[] args) {
@@ -71,13 +76,25 @@ public class Test {
         BinNum testMult1 = new SimpleBinNum("100010");
         BinNum testMult2 = new SimpleBinNum("111100");
 
-        MultipliedNum testMultResult = testMult1.multiply(testMult2, new MultiplyMethod1());
-        System.out.println(testMultResult.getNumber().toString());
+        MultipliedNum testMultResult1 = testMult1.multiply(testMult2, new MultiplyMethod1());
+        System.out.println(testMultResult1.getNumber().toString());
+
+        MultipliedNum testMultResult2 = testMult1.multiply(testMult2, new MultiplyMethod2());
+        System.out.println(testMultResult2.getNumber().toString());
 
         BinNum testDiv1 = new SimpleBinNum("100010");
         BinNum testDiv2 = new SimpleBinNum("111100");
 
         DividedNum testDivResult = testDiv1.divide(testDiv2, new DivideMethod2());
         System.out.println(testDivResult.getNumber().toString());
+
+        XWPFDocument document = new XWPFDocument();
+        testDivResult.getDivideTable().createWordTable(document);
+        try (FileOutputStream out = new FileOutputStream("TableExample.docx")) {
+            document.write(out);
+            System.out.println("Word document created successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
