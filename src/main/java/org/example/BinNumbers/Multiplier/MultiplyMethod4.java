@@ -2,8 +2,8 @@ package org.example.BinNumbers.Multiplier;
 
 import org.example.BinNumbers.SimpleBinNum;
 import org.example.Tables.Row;
-import org.example.Tables.RowType2.MainRowType2;
-import org.example.Tables.RowType2.ZeroRowType2;
+import org.example.Tables.RowType4.MainRowType4;
+import org.example.Tables.RowType4.ZeroRowType4;
 import org.example.Tables.Table;
 
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class MultiplyMethod4 implements MultiplyStrategy {
         SimpleBinNum rg3Num = new SimpleBinNum("0" + new SimpleBinNum(secondOperand, 0, 0) + rg1);
         int counter = 0;
         String zeroRowOper = "RG1 = 0\nRG2 = X\nRG3 = 0.Y.[0..0]";
-        Row zeroRowType2 = new ZeroRowType2(counter, rg1Num, rg2Num, rg3Num, zeroRowOper);
+        Row zeroRowType2 = new ZeroRowType4(counter, rg1Num, rg2Num, rg3Num, zeroRowOper);
         multiplyTable.addRow(zeroRowType2);
         String operation1 = "RG2 = l(RG2).0\n" +
                 "RG3 = 0.r(RG3)\n";
@@ -66,7 +66,7 @@ public class MultiplyMethod4 implements MultiplyStrategy {
             if (flagNum == 0) {
                 rg2Num = (SimpleBinNum) rg2Num.shiftLeft();
                 rg3Num = (SimpleBinNum) rg3Num.shiftRight();
-                row = new MainRowType2(counter, rg1Num, rg2Num, rg3Num, operation1);
+                row = new MainRowType4(counter, rg1Num, rg2Num, rg3Num, operation1);
             } else {
                 ArrayList<SimpleBinNum> rg1List = new ArrayList<>();
                 rg1List.add(rg1Num);
@@ -75,7 +75,7 @@ public class MultiplyMethod4 implements MultiplyStrategy {
                 rg1List.add(rg1Num);
                 rg2Num = (SimpleBinNum) rg2Num.shiftLeft();
                 rg3Num = (SimpleBinNum) rg3Num.shiftRight();
-                row = new MainRowType2(counter, rg1List, rg2Num, rg3Num, operation2);
+                row = new MainRowType4(counter, rg1List, rg2Num, rg3Num, operation2);
             }
             multiplyTable.addRow(row);
             flag = rg1.toString().equals(rg2Num.toString());

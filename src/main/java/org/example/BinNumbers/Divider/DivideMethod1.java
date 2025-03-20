@@ -24,7 +24,7 @@ public class DivideMethod1 implements DivideStrategy {
         ArrayList<String> header = new ArrayList<>();
         header.add("№");
         header.add("RG3\n" + (maxLength + 1) + " - 1");
-        header.add("RG2\n" + (maxLength + 1) + " - 1");
+        header.add("RG2\n" + (maxLength + 2) + " - 1");
         header.add("RG1\n" + (maxLength + 2) + " - 1");
         header.add("");
         header.add("Мікрооперації");

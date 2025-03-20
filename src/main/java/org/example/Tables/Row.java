@@ -49,7 +49,6 @@ public abstract class Row {
         addCellWithNewLines(row, 1, getRg1AsString());
         addCellWithNewLines(row, 2, getRg2AsString());
         addCellWithNewLines(row, 3, getRg3AsString());
-        //треба переписати метод для рядків де змінений порядок регістрів
         if (!getCounter().isEmpty()) {
             addCellWithNewLines(row, 4, getCounter());
             addCellWithNewLines(row, 5, getOperations());
@@ -60,26 +59,22 @@ public abstract class Row {
     public static void addCellWithNewLines(XWPFTableRow row, int cellIndex, String text) {
         XWPFTableCell cell;
 
-        // Якщо комірка ще не створена - створюємо її
         if (row.getCell(cellIndex) == null) {
             cell = row.createCell();
         } else {
             cell = row.getCell(cellIndex);
         }
 
-        // Очищаємо комірку перед записом (щоб уникнути дублювання)
         cell.removeParagraph(0);
 
-        // Додаємо новий абзац для комірки
         XWPFParagraph paragraph = cell.addParagraph();
         XWPFRun run = paragraph.createRun();
 
-        // Розбиваємо текст за \n і додаємо кожен рядок окремо
         String[] lines = text.split("\n");
         for (int i = 0; i < lines.length; i++) {
             run.setText(lines[i]);
             if (i < lines.length - 1) {
-                run.addBreak(); // Додає новий рядок у Word
+                run.addBreak();
             }
         }
     }

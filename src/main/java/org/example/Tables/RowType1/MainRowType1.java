@@ -40,7 +40,7 @@ public class MainRowType1 extends Row {
 
     @Override
     public String getRg2AsString() {
-        return rg2Number.getFirst().toString();
+        return ">>" + rg2Number.getFirst().toString();
     }
 
     @Override

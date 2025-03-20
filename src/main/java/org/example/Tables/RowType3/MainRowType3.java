@@ -35,7 +35,7 @@ public class MainRowType3 extends Row {
         if (rg1Number.size() == 1) {
             return "<<" + rg1Number.get(0).toString();
         }
-        return rg1Number.get(0).toString() + "\n+" + rg1Number.get(1).toString() + "\n=" + rg1Number.get(2).getNumber().getFirst() + "|" + rg1Number.get(2).toString() + "\n<<" + rg1Number.get(3).toString();
+        return rg1Number.get(0).toString() + "\n+" + rg1Number.get(1).toString() + "\n=" + rg1Number.get(2).getCarryBit() + "|" + rg1Number.get(2).toString() + "\n<<" + rg1Number.get(3).toString();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class MainRowType3 extends Row {
         if (rg2Number.size() == 1) {
             return "<<" + rg2Number.get(0).toString();
         }
-        return rg1Number.get(0).toString() + "\n+" + rg2Number.get(1).toString() + "\n=" + rg2Number.getFirst().toString() + "\n<<" + rg2Number.get(3).toString();
+        return rg2Number.get(0).toString() + "\n+" + rg2Number.get(1).toString() + "\n=" + rg2Number.getFirst().toString() + "\n<<" + rg2Number.get(3).toString();
 
     }
 

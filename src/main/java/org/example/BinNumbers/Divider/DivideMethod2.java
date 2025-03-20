@@ -46,7 +46,7 @@ public class DivideMethod2 implements DivideStrategy {
         ArrayList<SimpleBinNum> rg1List = new ArrayList<>(List.of(rg1NumPlus, rg1NumMinus));
         Row zeroRowType6 = new ZeroRowType6(counter, rg3Num, rg2Num, rg1List, zeroRowOper);
         divideTable.addRow(zeroRowType6);
-        String operationPlus = "RG2 = RG2+\\!RG1+D\n" +
+        String operationPlus = "RG2 = RG2+!RG1+D\n" +
                 "RG3 = l(RG3).SM(p)\n" +
                 "RG1 = 0.r(RG1)";
         String operationMinus = "RG2 = RG2+RG1\n" +

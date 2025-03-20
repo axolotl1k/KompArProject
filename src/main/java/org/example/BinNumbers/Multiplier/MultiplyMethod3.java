@@ -50,7 +50,8 @@ public class MultiplyMethod3 implements MultiplyStrategy {
         SimpleBinNum rg3Num = new SimpleBinNum(secondOperand, 0, 0);
         int counter = 0;
         String zeroRowOper = "RG1 = 0\nRG2 = X.0\nRG3 = Y";
-        Row zeroRowType3 = new ZeroRowType3(counter, rg2Num, rg1Num, rg3Num, String.valueOf(maxLength-counter), zeroRowOper);
+        int counterSize = Integer.toBinaryString(maxLength-counter).length();
+        Row zeroRowType3 = new ZeroRowType3(counter, rg2Num, rg1Num, rg3Num, Integer.toBinaryString(maxLength-counter), zeroRowOper);
         multiplyTable.addRow(zeroRowType3);
         String operation1 = "RG1 = l(RG1).0\n" +
                 "RG2 = l(RG2).RG1[6]\n";
@@ -62,10 +63,11 @@ public class MultiplyMethod3 implements MultiplyStrategy {
         for (counter = 1; counter < maxLength + 1; counter++) {
             flag = rg2Num.getNumber().getFirst();
             Row row;
+            String ctNum = String.format("%0" + counterSize + "d", Integer.parseInt(Integer.toBinaryString(maxLength - counter)));
             if (flag == 0) {
                 rg1Num = (SimpleBinNum) rg1Num.shiftLeft();
                 rg2Num = (SimpleBinNum) rg2Num.shiftLeft(rg1Num.getDroppedBit());
-                row = new MainRowType3(counter, rg2Num, rg1Num, rg3Num, String.valueOf(maxLength-counter), operation1);
+                row = new MainRowType3(counter, rg2Num, rg1Num, rg3Num, ctNum, operation1);
             } else {
                 ArrayList<SimpleBinNum> rg1List = new ArrayList<>();
                 ArrayList<SimpleBinNum> rg2List = new ArrayList<>();
@@ -82,7 +84,7 @@ public class MultiplyMethod3 implements MultiplyStrategy {
                 rg1List.add(rg1Num);
                 rg2Num = (SimpleBinNum) rg2Num.shiftLeft(rg1Num.getDroppedBit());
                 rg2List.add(rg2Num);
-                row = new MainRowType3(counter, rg2List, rg1List, rg3Num, String.valueOf(maxLength-counter), operation2);
+                row = new MainRowType3(counter, rg2List, rg1List, rg3Num, ctNum, operation2);
             }
             multiplyTable.addRow(row);
         }
